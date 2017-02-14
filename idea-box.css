@@ -7,6 +7,8 @@ body {
 main {
     background-color: #E5F3F2;
     display: block;
+
+=======
     height: 50vh;
     text-align: center;
     padding-top: 20px;
@@ -20,10 +22,10 @@ header {
 }
 
 .input {
+
   border:1px solid #939598;
   display: block;
   font-family: 'Open Sans'
-  font-size: 24px;
   margin: auto;
   margin-top: 20px;
   padding-left: 5px;
@@ -37,11 +39,13 @@ header {
   background-color: #00A79D;
   color: #ffffff;
   padding: 5px 25px;
+
   width:  70vw;
   margin: 20px auto;
   height: 35px;
   font-size: 18px;
 }
+
 
 .submit:hover{
   background-color: #045e55;
