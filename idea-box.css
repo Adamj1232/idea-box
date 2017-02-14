@@ -1,0 +1,60 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+main {
+    background-color: #E5F3F2;
+    display: block;
+    height: 300px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+header {
+  color: #00A79D;
+  font-family: 'Roboto Slab';
+  font-size: 25px;
+  margin: 0px auto;
+}
+
+.input {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  width: 250px;
+  border:1px solid #939598;
+  font-family: 'Open Sans'
+  font-size: 24px;
+  height: 35px;
+  font-size: 18px;
+}
+
+.submit {
+  display: block;
+  background-color: #00A79D;
+  color: #ffffff;
+  padding: 5px 25px;
+  width: 252px;
+  margin: 20px auto;
+  height: 35px;
+  font-size: 18px;
+}
+
+.body {
+  height: 80px;
+}
+
+.box {
+  color: #6D6E71;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 480px)
