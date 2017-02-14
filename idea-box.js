@@ -15,6 +15,8 @@ $('.submit').on('click', function(){
       '<p class="quality">Quality: Swill</p>' +
     '</article>'
   );
+  Input();
+  sendToStorage();
   clearField();
   disableSubmit();
 })
@@ -43,10 +45,11 @@ function clearField() {
 }
 
 function Idea(title, body) {
-  this.title = title;
-  this.body = body;
+  this.title = $ideaTitle.val();
+  this.body = $ideaBody.val();
   this.quality = 'swill';
   this.id = Date.now();
+  console.log(title, body)
 }
 
 function sendToStorage(id, object) {
@@ -54,7 +57,7 @@ function sendToStorage(id, object) {
 }
 
 function retrieveIdea() {
-  var userIdea = new Idea(ideaTitle, ideaBody);
+  var userIdea = Idea(ideaTitle, ideaBody);
   addIdea(userIdea);
   sendToStorage(Idea.id, userIdea);
 }
