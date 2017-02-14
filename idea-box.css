@@ -7,7 +7,7 @@ body {
 main {
     background-color: #E5F3F2;
     display: block;
-    height: 300px;
+    height: 50vh;
     text-align: center;
     padding-top: 20px;
 }
@@ -20,15 +20,16 @@ header {
 }
 
 .input {
-  display: block;
-  margin: auto;
-  margin-top: 20px;
-  width: 250px;
   border:1px solid #939598;
+  display: block;
   font-family: 'Open Sans'
   font-size: 24px;
+  margin: auto;
+  margin-top: 20px;
+  padding-left: 5px;
   height: 35px;
   font-size: 18px;
+  width: 70vw;
 }
 
 .submit {
@@ -36,14 +37,19 @@ header {
   background-color: #00A79D;
   color: #ffffff;
   padding: 5px 25px;
-  width: 252px;
+  width:  70vw;
   margin: 20px auto;
   height: 35px;
   font-size: 18px;
 }
 
+.submit:hover{
+  background-color: #045e55;
+}
+
 .body {
-  height: 80px;
+  height: auto;
+  padding-bottom: 80px;
 }
 
 .box {
@@ -53,8 +59,25 @@ header {
 
 
 
+/*Media Queries*/
+@media screen and (min-width: 480px){
+  header{
+
+    font-size: 35px;
+  }
+}
+
+@media screen and (min-width: 600px){
+  header{
+    font-size: 40px;
+  }
+
+}
 
 
+@media screen and (min-width: 720px){
 
-
-@media screen and (max-width: 480px)
+  header{
+    font-size: 50px;
+  }
+}
