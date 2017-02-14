@@ -1,23 +1,32 @@
 var $ideaTitle = $('#title');
 var $ideaBody = $('#body');
 var $submit = $('.submit');
-var titleBody = new Input($ideaTitle.val(), $ideaBody.val());
+var tb = $('#body').val();
+var bt = $('#title').val();
+titleBody = new Idea();
 
 $('#submit').prop('disabled', true);
 
-$('.submit').on('click', function(){
-
+function prepend(idea) {
   $('.idea-field').prepend(
     '<article class="entry" id="${idea.id}">' +
-      '<h3 class="title">' + $ideaTitle.val() + '</h3>' + '<button class="delete">Delete</button>' +
-      '<section><p>' + $ideaBody.val() + '</p></section>' +
-      '<button class="up"></button>' +
-      '<button class="down"></button>' +
-      '<p class="quality">Quality: Swill</p>' +
+    '<h3 class="title">' + ${idea.title} + '</h3>' + '<button class="delete">Delete</button>' +
+    '<section><p>' + $ideaBody.val() + '</p></section>' +
+    '<button class="up"></button>' +
+    '<button class="down"></button>' +
+    '<p class="quality">Quality: Swill</p>' +
     '</article>'
+
+}
+
+$('.submit').on('click', function(){
+    prepend()
+
   );
 
-  Input();
+
+var titleBody = new Idea(bt, tb);
+  console.log(titleBody);
   sendToStorage();
   clearField();
   disableSubmit();
@@ -51,7 +60,6 @@ function Idea(title, body) {
   this.body = $ideaBody.val();
   this.quality = 'swill';
   this.id = Date.now();
-  console.log(title, body)
 }
 
 function sendToStorage(id, titleBody) {
@@ -59,7 +67,8 @@ function sendToStorage(id, titleBody) {
 }
 
 function retrieveIdea() {
-  var userIdea = Idea(ideaTitle, ideaBody);
-  addIdea(userIdea);
-  sendToStorage(Idea.id, userIdea);
+  // var ideaTitle = $('#title');
+  // var ideaBody = $('#body');
+  var userIdea = new Idea($ideaTitle.val(), $ideaBody.val());
+  sendToStorage(Idea.id, titelBody);
 }
