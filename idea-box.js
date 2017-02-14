@@ -1,6 +1,7 @@
 var $ideaTitle = $('#title');
 var $ideaBody = $('#body');
 var $submit = $('.submit');
+var titleBody = new Input($ideaTitle.val(), $ideaBody.val());
 
 $('#submit').prop('disabled', true);
 
@@ -15,6 +16,7 @@ $('.submit').on('click', function(){
       '<p class="quality">Quality: Swill</p>' +
     '</article>'
   );
+
   Input();
   sendToStorage();
   clearField();
@@ -52,8 +54,8 @@ function Idea(title, body) {
   console.log(title, body)
 }
 
-function sendToStorage(id, object) {
-  localStorage.setItem(id, JSON.stringify(object));
+function sendToStorage(id, titleBody) {
+  localStorage.setItem(id, JSON.stringify(titleBody));
 }
 
 function retrieveIdea() {
