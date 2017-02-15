@@ -1,15 +1,9 @@
 body {
+  font-family: Open sans-serif;
+  height: 100%;
   margin: 0px;
   padding: 0px;
-  height: 100%;
   text-align: center;
-}
-
-main {
-    background-color: #E5F3F2;
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
 }
 
 header {
@@ -19,38 +13,14 @@ header {
   margin: 0px auto;
 }
 
-.input {
-
-  border:1px solid #939598;
-  margin: auto;
-  margin-top: 20px;
-  padding-left: 5px;
-  font-size: 18px;
-  width: 70%;
-}
-
-.submit {
-  display: block;
-  background-color: #00A79D;
-  color: #ffffff;
-  padding: 5px 25px;
-  width:  70vw;
-  margin: 20px auto;
-  height: 35px;
-  font-size: 18px;
-}
-
-
-.submit:hover{
-  background-color: #045E55;
-}
-
-.submit:disabled {
-  background-color: #045E55;
+main {
+    background-color: #E5F3F2;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
 }
 
 .body {
-  /*height: auto;*/
   padding-bottom: 80px;
 }
 
@@ -58,16 +28,73 @@ header {
   color: #6D6E71;
 }
 
+.input {
+  border:1px solid #939598;
+  font-size: 18px;
+  margin: auto;
+  margin-top: 20px;
+  padding-left: 5px;
+  width: 70%;
+}
+
+.submit {
+  display: block;
+  background-color: #00A79D;
+  color: #ffffff;
+  font-size: 18px;
+  height: 35px;
+  margin: 20px auto;
+  padding: 5px 25px;
+  width:  70vw;
+}
+
+.submit:hover {
+  background-color: #045E55;
+}
+
+.submit:disabled {
+  background-color: #045E55;
+}
+
+.idea-field{
+  display: flex;
+  flex-direction: column;
+  /*padding: 20px;*/
+}
+
+.entry {
+  border-bottom: 1px solid #D1D3D4;
+  font-size: 18px;
+  margin: auto;
+  text-align: left;
+  width: 232px;
+}
+
+.entry p{
+  color: #939598;
+}
+
+.title {
+  color: #6D6E71;
+
+}
+
+
+
+
+
 
 /*Media Queries*/
-@media screen and (min-width: 480px){
+@media screen and (min-width: 480px) {
+
   header{
 
     font-size: 35px;
   }
 }
 
-@media screen and (min-width: 600px){
+@media screen and (min-width: 600px) {
+
   header{
     font-size: 40px;
   }
@@ -75,7 +102,7 @@ header {
 }
 
 
-@media screen and (min-width: 720px){
+@media screen and (min-width: 720px) {
 
   header{
     font-size: 50px;
