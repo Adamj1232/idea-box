@@ -78,11 +78,6 @@ function retrieveIdea() {
   var idea = new Idea (storeTitle, storeBody)
 }
 
-function deleteLocalStorage (idea) {
-
-
-  // var idea = new Idea (storeTitle, storeBody);
-
   this.parent.removeItem
 
 }
