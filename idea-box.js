@@ -2,9 +2,7 @@
 var $ideaTitle = $('#title');
 var $ideaBody = $('#body');
 var $submit = $('.submit');
-var tb = $('#body').val();
-var bt = $('#title').val();
-titleBody = new Idea();
+
 
 $(document).ready(function(){
   for (var i = 0; i < localStorage.length; i++) {
@@ -22,7 +20,7 @@ function prepend(idea) {
     <p> ${idea.body}</p>
     <button class="up"></button>
     <button class="down"></button>
-    <p class="quality">Quality: ${idea.quality}</p>
+    <p class="quality">quality: ${idea.quality}</p>
   </article>
   `)
 }
