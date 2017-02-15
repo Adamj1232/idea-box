@@ -36,7 +36,9 @@ $('.submit').on('click', function(){
 })
 
 $('.idea-field').on('click', '.delete', function(){
+  var rmvId = $(this).parent().attr('id');
   $(this).parent('.entry').remove();
+  localStorage.removeItem(rmvId);
 })
 
 $('input[type=text]').on('keyup', function () {
@@ -74,4 +76,13 @@ function retrieveIdea() {
   var storeBody = $('#body').val();
   var storeTitle = $('#title').val();
   var idea = new Idea (storeTitle, storeBody)
+}
+
+function deleteLocalStorage (idea) {
+
+
+  // var idea = new Idea (storeTitle, storeBody);
+
+  this.parent.removeItem
+
 }
