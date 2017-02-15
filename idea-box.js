@@ -1,3 +1,4 @@
+
 var $ideaTitle = $('#title');
 var $ideaBody = $('#body');
 var $submit = $('.submit');
@@ -5,31 +6,35 @@ var tb = $('#body').val();
 var bt = $('#title').val();
 titleBody = new Idea();
 
+$(document).ready(function(){
+  for (var i = 0; i < localStorage.length; i++) {
+    prepend(JSON.parse(localStorage.getItem(localStorage.key(i))))
+  }
+});
+
 $('#submit').prop('disabled', true);
 
 function prepend(idea) {
-  $('.idea-field').prepend(
-    '<article class="entry" id="${idea.id}">' +
-    '<h3 class="title">' + ${idea.title} + '</h3>' + '<button class="delete">Delete</button>' +
-    '<section><p>' + $ideaBody.val() + '</p></section>' +
-    '<button class="up"></button>' +
-    '<button class="down"></button>' +
-    '<p class="quality">Quality: Swill</p>' +
-    '</article>'
-
+  $('.idea-field').prepend(`
+  <article class="entry" id="${idea.id}">
+    <h3 class="title"> ${idea.title} </h3>
+    <button class="delete"> Delete </button>
+    <p> ${idea.body}</p>
+    <button class="up"></button>
+    <button class="down"></button>
+    <p class="quality">Quality: ${idea.quality}</p>
+  </article>
+  `)
 }
 
 $('.submit').on('click', function(){
-    prepend()
-
-  );
-
-
-var titleBody = new Idea(bt, tb);
-  console.log(titleBody);
-  sendToStorage();
-  clearField();
-  disableSubmit();
+  var storeBody = $('#body').val();
+  var storeTitle = $('#title').val();
+  var idea = new Idea (storeTitle, storeBody)
+    prepend(idea);
+    sendToStorage();
+    disableSubmit();
+    clearField();
 })
 
 $('.idea-field').on('click', '.delete', function(){
@@ -49,26 +54,26 @@ function disableSubmit() {
 }
 
 function clearField() {
-  {
     $ideaTitle.val("");
     $ideaBody.val("");
-  }
 }
 
 function Idea(title, body) {
-  this.title = $ideaTitle.val();
-  this.body = $ideaBody.val();
+  this.title = title;
+  this.body = body;
   this.quality = 'swill';
   this.id = Date.now();
 }
 
-function sendToStorage(id, titleBody) {
-  localStorage.setItem(id, JSON.stringify(titleBody));
+function sendToStorage(idea) {
+  var storeBody = $('#body').val();
+  var storeTitle = $('#title').val();
+  var idea = new Idea (storeTitle, storeBody)
+  localStorage.setItem(idea.id, JSON.stringify(idea))
 }
 
 function retrieveIdea() {
-  // var ideaTitle = $('#title');
-  // var ideaBody = $('#body');
-  var userIdea = new Idea($ideaTitle.val(), $ideaBody.val());
-  sendToStorage(Idea.id, titelBody);
+  var storeBody = $('#body').val();
+  var storeTitle = $('#title').val();
+  var idea = new Idea (storeTitle, storeBody)
 }
