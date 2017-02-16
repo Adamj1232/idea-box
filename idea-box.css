@@ -20,6 +20,10 @@ main {
     padding-top: 20px;
 }
 
+article .entry{
+  width: 10px;
+}
+
 .body {
   padding-bottom: 80px;
 }
@@ -80,34 +84,52 @@ main {
 
 .title {
   color: #6D6E71;
+  display: inline-block;
 }
 
 .up, .down, .delete {
   border: none;
   background: transparent;
+  background-position: 0 0;
+  background-repeat: no-repeat;
   cursor: pointer;
+  height: 25px;
   width: 25px;
 }
 
-.up:hover {
-  background: transparent url('images/upvote-hover.svg');
+.delete{
+  background: url('images/delete.svg');
+  float: right;
+  margin-top: 35px;
+
+}
+
+.up{
+  background: url('images/upvote.svg');
+}
+
+.down{
+  background: url('images/downvote.svg');
+}
+
+.delete:hover, .up:hover, .down:hover{
   background-position: 0 0;
   background-repeat: no-repeat;
   width: 25px;
+}
+
+
+.up:hover {
+  background: transparent url('images/upvote-hover.svg');
+
 }
 
 .down:hover {
   background: transparent url('images/downvote-hover.svg');
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  width: 25px;
 }
 
 .delete:hover {
   background: transparent url('images/delete-hover.svg');
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  width: 25px;
 }
 
 
