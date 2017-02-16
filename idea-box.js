@@ -1,31 +1,13 @@
 var $ideaTitle = $('#title');
 var $ideaBody = $('#body');
 
-
 $(document).ready(function(){
- for (var i = 0; i < localStorage.length; i++) {
-   prepend(JSON.parse(localStorage.getItem(localStorage.key(i))))
- }
+  for (var i = 0; i < localStorage.length; i++) {
+    prepend(JSON.parse(localStorage.getItem(localStorage.key(i))))
+  }
 });
 
 $('#submit').prop('disabled', true);
-
-
-$('.idea-field').on('focusout', '.title', function(){
-  var editId = $(this).parent().attr('id');
-  var editTitle = $(this).closest('.title').html();
-  var updated = JSON.parse(localStorage.getItem(editId));
-  updated.title = editTitle;
-  localStorage.setItem(editId, JSON.stringify(updated));
-})
-
-$('.idea-field').on('focusout', '.ideaEdit', function(){
-  var editId = $(this).parent().attr('id');
-  var editBody = $(this).closest('.ideaEdit').html();
-  var updated = JSON.parse(localStorage.getItem(editId));
-  updated.body = editBody;
-  localStorage.setItem(editId, JSON.stringify(updated))
-})
 
 function prepend(idea) {
  $('.idea-field').prepend(`
@@ -76,46 +58,61 @@ $('#search').on('keyup', function() {
   })
 })
 
-$('.idea-field').on('click', '.up', function() {
-  var status = $(this).siblings('.quality').text();
-  if (status === 'swill') {
-    $(this).siblings('.quality').text('plausible');
-  } else if (status === 'plausible') {
-    $(this).siblings('.quality').text('genius');
-  }
-
-  var id = $(this).parent().attr('id');
-  var idea = JSON.parse(localStorage.getItem(id));
-  var currentStatus = $(this).siblings('.quality').text();
-  idea.quality = currentStatus;
-  sendToStorage(id, idea);
+$('.idea-field').on('focusout', '.title', function(){
+  var editId = $(this).parent().attr('id');
+  var editTitle = $(this).closest('.title').html();
+  var updated = JSON.parse(localStorage.getItem(editId));
+  updated.title = editTitle;
+  localStorage.setItem(editId, JSON.stringify(updated));
 })
 
-// $('.idea-field').on('click', '.up', function (){
-//  var status = $(this).siblings('.quality').text();
-//  if (status === "swill") {
-//      status = "plausible";
-//      $(this).siblings('.quality').text("plausible");
-//      newStatus(this, status);
-//  }else if (status === "plausible") {
-//       status = "genius";
-//         $(this).siblings('.quality').text("genius");
-//           newStatus(this, status);
-//    }
-//
-// })
-//
-//
-//
-// /******FUNCTIONS******/
-//
-// function updateStatus (voteInput, status) {
-//  var parentId = $(voteInput).parent().attr('id');
-//  var getCard = JSON.parse(localStorage.getItem(parentId));
-//  Idea.quality = status;
-//  localStorage.setItem(parentId, JSON.stringify(getCard));
-//
-// }
+$('.idea-field').on('focusout', '.ideaEdit', function(){
+  var editId = $(this).parent().attr('id');
+  var editBody = $(this).closest('.ideaEdit').html();
+  var updated = JSON.parse(localStorage.getItem(editId));
+  updated.body = editBody;
+  localStorage.setItem(editId, JSON.stringify(updated))
+})
+
+
+$('.idea-field').on('click', '.down', function (){
+ var status = $(this).siblings('span').text();
+ if (status === "genius") {
+     status = "plausible";
+     $(this).siblings('span').text("plausible");
+     newStatus(this, status);
+ }else if (status === "plausible") {
+      status = "swill";
+        $(this).siblings('span').text("genius");
+   }
+   newStatus(this, status);
+})
+
+$('.idea-field').on('click', '.up', function (){
+ var status = $(this).siblings('span').text();
+ if (status === "swill") {
+     status = "plausible";
+     $(this).siblings('span').text("plausible");
+     newStatus(this, status);
+ }else if (status === "plausible") {
+      status = "genius";
+        $(this).siblings('span').text("genius");
+   }
+   newStatus(this, status);
+})
+
+/******FUNCTIONS******/
+
+function newStatus (voteInput, status) {
+ var parentId = $(voteInput).parent().attr('id');
+ var getCard = JSON.parse(localStorage.getItem(parentId));
+ console.log(parentId);
+ console.log(getCard);
+ getCard.quality = status;
+ console.log(getCard.quality)
+ localStorage.setItem(parentId, JSON.stringify(getCard));
+
+}
 
 function disableSubmit() {
  $('#submit').prop('disabled', true);
@@ -140,8 +137,29 @@ function sendToStorage(idea) {
  localStorage.setItem(idea.id, JSON.stringify(idea))
 }
 
+function returnToStorage(id, object) {
+  localStorage.setItem(id, JSON.stringify(object));
+}
+
 function retrieveIdea() {
  var storeBody = $('#body').val();
  var storeTitle = $('#title').val();
  var idea = new Idea (storeTitle, storeBody)
 }
+
+
+// $('.idea-field').on('click', '.up', function() {
+//   var status = $(this).siblings('.quality').text();
+//   if (status === 'swill') {
+//     $(this).siblings('.quality').text('plausible');
+//   } else if (status === 'plausible') {
+//     $(this).siblings('.quality').text('genius');
+//   }
+//
+//   var id = $(this).closest('entry').attr('id');
+//   var updated = JSON.parse(localStorage.getItem(id));
+//   var currentStatus = $(this).siblings('.quality').text();
+//   updated.quality = currentStatus;
+//   // localStorage.setItem(id, JSON.stringify(currentStatus));
+//   returnToStorage(id, updated);
+// })
