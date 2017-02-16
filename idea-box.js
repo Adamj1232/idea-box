@@ -10,6 +10,22 @@ $(document).ready(function(){
 $('#submit').prop('disabled', true);
 
 function prepend(idea) {
+<<<<<<< HEAD
+  $('.idea-field').prepend(`
+  <article class="entry" id="${idea.id}">
+    <div>
+      <h3 class="title" contenteditable="true"> ${idea.title} </h3>
+      <button class="delete"></button>
+      <p class="ideaEdit" contenteditable="true"> ${idea.body}</p>
+    </div>
+    <div>
+      <button class="up"></button>
+     <button class="down"></button>
+     <span class="quality">quality: ${idea.quality}</span>
+    </div>
+  </article>
+  `)
+=======
  $('.idea-field').prepend(`
  <article class="entry" id="${idea.id}">
    <h3 class="title" contenteditable="true"> ${idea.title} </h3>
@@ -21,6 +37,7 @@ function prepend(idea) {
    <span class="quality">${idea.quality}</span>
  </article>
  `)
+>>>>>>> e820e1ce0d2645665805e4482e826d7d1d53aa9b
 }
 
 $('.submit').on('click', function(){
