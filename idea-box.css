@@ -14,10 +14,10 @@ header {
 }
 
 main {
-    background-color: #E5F3F2;
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
+  background-color: #E5F3F2;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
 }
 
 article .entry{
@@ -132,7 +132,6 @@ article .entry{
 
 .up:hover {
   background: transparent url('images/upvote-hover.svg');
-
 }
 
 .down:hover {
@@ -142,7 +141,6 @@ article .entry{
 .delete:hover {
   background: transparent url('images/delete-hover.svg');
 }
-
 
 
 /*Media Queries*/

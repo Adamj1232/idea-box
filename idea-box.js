@@ -9,23 +9,6 @@ $(document).ready(function(){
 
 $('#submit').prop('disabled', true);
 
-function prepend(idea) {
-
-  $('.idea-field').prepend(`
-  <article class="entry" id="${idea.id}">
-    <section>
-      <h3 class="title" contenteditable="true"> ${idea.title} </h3>
-      <button class="delete"></button>
-      <p class="ideaEdit" contenteditable="true"> ${idea.body}</p>
-    </section>
-     <button class="up"></button>
-     <button class="down"></button>
-     <span class="quality">${idea.quality}</span>
-  </article>
-  `)
-
-}
-
 $('.submit').on('click', function(){
  var storeBody = $('#body').val();
  var storeTitle = $('#title').val();
@@ -83,7 +66,7 @@ $('.idea-field').on('click', '.down', function (){
      status = "quality: plausible";
      $(this).siblings('.quality').text("quality: plausible");
      newStatus(this, status);
- }else if (status === "quality: plausible") {
+ } else if (status === "quality: plausible") {
       status = "quality: swill";
         $(this).siblings('.quality').text("quality: swill");
         newStatus(this, status);
@@ -105,6 +88,21 @@ $('.idea-field').on('click', '.up', function (){
 
 /******FUNCTIONS******/
 
+function prepend(idea) {
+  $('.idea-field').prepend(`
+    <article class="entry" id="${idea.id}">
+    <section>
+    <h3 class="title" contenteditable="true"> ${idea.title} </h3>
+    <button class="delete"></button>
+    <p class="ideaEdit" contenteditable="true"> ${idea.body}</p>
+    </section>
+    <button class="up"></button>
+    <button class="down"></button>
+    <span class="quality">${idea.quality}</span>
+    </article>
+    `)
+  }
+
 function newStatus (voteInput, status) {
  var parentId = $(voteInput).parent().attr('id');
  var getCard = JSON.parse(localStorage.getItem(parentId));
@@ -113,7 +111,6 @@ function newStatus (voteInput, status) {
  getCard.quality = status;
  console.log(getCard.quality)
  localStorage.setItem(parentId, JSON.stringify(getCard));
-
 }
 
 function disableSubmit() {
@@ -137,7 +134,6 @@ function sendToStorage(idea) {
  var storeTitle = $('#title').val();
  var idea = new Idea (storeTitle, storeBody);
  localStorage.setItem(idea.id, JSON.stringify(idea));
-
 }
 
 function returnToStorage(id, object) {
