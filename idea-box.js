@@ -10,6 +10,7 @@ $(document).ready(function(){
 $('#submit').prop('disabled', true);
 
 function prepend(idea) {
+
   $('.idea-field').prepend(`
   <article class="entry" id="${idea.id}">
     <section>
@@ -22,6 +23,7 @@ function prepend(idea) {
      <span class="quality">${idea.quality}</span>
   </article>
   `)
+
 }
 
 $('.submit').on('click', function(){
