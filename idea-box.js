@@ -15,12 +15,16 @@ $('#submit').prop('disabled', true);
 function prepend(idea) {
   $('.idea-field').prepend(`
   <article class="entry" id="${idea.id}">
-    <h3 class="title" contenteditable="true"> ${idea.title} </h3><span><input type="image" src="images/delete.svg" alt="image of a delete button" class="delete"> </input></span>
-
-    <p class="ideaEdit" contenteditable="true"> ${idea.body}</p>
-    <input type="image" src="images/upvote.svg" alt="image of an up arrow" class="up"></input>
-    <input type="image" src="images/downvote.svg" alt="image of a down arrow" class="down"><span class="quality">quality: ${idea.quality}</span></input>
-
+    <div>
+      <h3 class="title" contenteditable="true"> ${idea.title} </h3>
+      <button class="delete"></button>
+      <p class="ideaEdit" contenteditable="true"> ${idea.body}</p>
+    </div>
+    <div>
+      <button class="up"></button>
+     <button class="down"></button>
+     <span class="quality">quality: ${idea.quality}</span>
+    </div>
   </article>
   `)
 }
