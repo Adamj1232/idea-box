@@ -20,6 +20,10 @@ main {
     padding-top: 20px;
 }
 
+article .entry{
+  width: 10px;
+}
+
 .body {
   padding-bottom: 80px;
 }
