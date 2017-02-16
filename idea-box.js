@@ -62,7 +62,7 @@ $('#search').on('keyup', function() {
 })
 
 $('.idea-field').on('focusout', '.title', function(){
-  var editId = $(this).parent().attr('id');
+  var editId = $(this).parent().parent().attr('id');
   var editTitle = $(this).closest('.title').html();
   var updated = JSON.parse(localStorage.getItem(editId));
   updated.title = editTitle;
@@ -70,7 +70,7 @@ $('.idea-field').on('focusout', '.title', function(){
 })
 
 $('.idea-field').on('focusout', '.ideaEdit', function(){
-  var editId = $(this).parent().attr('id');
+  var editId = $(this).parent().parent().attr('id');
   var editBody = $(this).closest('.ideaEdit').html();
   var updated = JSON.parse(localStorage.getItem(editId));
   updated.body = editBody;
