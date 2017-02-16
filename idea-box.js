@@ -10,49 +10,35 @@ $(document).ready(function(){
 $('#submit').prop('disabled', true);
 
 function prepend(idea) {
-<<<<<<< HEAD
+
   $('.idea-field').prepend(`
   <article class="entry" id="${idea.id}">
-    <div>
+    <section>
       <h3 class="title" contenteditable="true"> ${idea.title} </h3>
       <button class="delete"></button>
       <p class="ideaEdit" contenteditable="true"> ${idea.body}</p>
-    </div>
-    <div>
-      <button class="up"></button>
+    </section>
+     <button class="up"></button>
      <button class="down"></button>
-     <span class="quality">quality: ${idea.quality}</span>
-    </div>
+     <span class="quality">${idea.quality}</span>
   </article>
   `)
-=======
- $('.idea-field').prepend(`
- <article class="entry" id="${idea.id}">
-   <h3 class="title" contenteditable="true"> ${idea.title} </h3>
-   <button class="delete"> Delete </button>
-   <p class="ideaEdit" contenteditable="true"> ${idea.body}</p>
-   <button class="up">Upvote</button>
-   <button class="down">Downvote</button>
-   <p>quality:</p>
-   <span class="quality">${idea.quality}</span>
- </article>
- `)
->>>>>>> e820e1ce0d2645665805e4482e826d7d1d53aa9b
+
 }
 
 $('.submit').on('click', function(){
  var storeBody = $('#body').val();
  var storeTitle = $('#title').val();
- var idea = new Idea (storeTitle, storeBody)
-   prepend(idea);
+ var idea = new Idea (storeTitle, storeBody);
    sendToStorage();
+   prepend(idea);
    disableSubmit();
    clearField();
 })
 
 $('.idea-field').on('click', '.delete', function(){
- var rmvId = $(this).parent().attr('id');
- $(this).parent('.entry').remove();
+ var rmvId = $(this).parent().parent().attr('id');
+ $(this).parent().parent('.entry').remove();
  localStorage.removeItem(rmvId);
 })
 
@@ -88,34 +74,33 @@ $('.idea-field').on('focusout', '.ideaEdit', function(){
   var editBody = $(this).closest('.ideaEdit').html();
   var updated = JSON.parse(localStorage.getItem(editId));
   updated.body = editBody;
-  localStorage.setItem(editId, JSON.stringify(updated))
+  localStorage.setItem(editId, JSON.stringify(updated));
 })
 
-
 $('.idea-field').on('click', '.down', function (){
- var status = $(this).siblings('span').text();
- if (status === "genius") {
-     status = "plausible";
-     $(this).siblings('span').text("plausible");
+ var status = $(this).siblings('.quality').text();
+ if (status === "quality: genius") {
+     status = "quality: plausible";
+     $(this).siblings('.quality').text("quality: plausible");
      newStatus(this, status);
- }else if (status === "plausible") {
-      status = "swill";
-        $(this).siblings('span').text("genius");
+ }else if (status === "quality: plausible") {
+      status = "quality: swill";
+        $(this).siblings('.quality').text("quality: swill");
+        newStatus(this, status);
    }
-   newStatus(this, status);
 })
 
 $('.idea-field').on('click', '.up', function (){
- var status = $(this).siblings('span').text();
- if (status === "swill") {
-     status = "plausible";
-     $(this).siblings('span').text("plausible");
+ var status = $(this).siblings('.quality').text();
+ if (status === "quality: swill") {
+     status = "quality: plausible";
+     $(this).siblings('.quality').text("quality: plausible");
      newStatus(this, status);
- }else if (status === "plausible") {
-      status = "genius";
-        $(this).siblings('span').text("genius");
+ }else if (status === "quality: plausible") {
+      status = "quality: genius";
+        $(this).siblings('.quality').text("quality: genius");
+        newStatus(this, status);
    }
-   newStatus(this, status);
 })
 
 /******FUNCTIONS******/
@@ -123,7 +108,7 @@ $('.idea-field').on('click', '.up', function (){
 function newStatus (voteInput, status) {
  var parentId = $(voteInput).parent().attr('id');
  var getCard = JSON.parse(localStorage.getItem(parentId));
- console.log(parentId);
+ console.log($(voteInput).parent());
  console.log(getCard);
  getCard.quality = status;
  console.log(getCard.quality)
@@ -143,15 +128,16 @@ function clearField() {
 function Idea(title, body) {
  this.title = title;
  this.body = body;
- this.quality = 'swill';
+ this.quality = 'quality: swill';
  this.id = Date.now();
 }
 
 function sendToStorage(idea) {
  var storeBody = $('#body').val();
  var storeTitle = $('#title').val();
- var idea = new Idea (storeTitle, storeBody)
- localStorage.setItem(idea.id, JSON.stringify(idea))
+ var idea = new Idea (storeTitle, storeBody);
+ localStorage.setItem(idea.id, JSON.stringify(idea));
+
 }
 
 function returnToStorage(id, object) {
@@ -161,22 +147,5 @@ function returnToStorage(id, object) {
 function retrieveIdea() {
  var storeBody = $('#body').val();
  var storeTitle = $('#title').val();
- var idea = new Idea (storeTitle, storeBody)
+ var idea = new Idea (storeTitle, storeBody);
 }
-
-
-// $('.idea-field').on('click', '.up', function() {
-//   var status = $(this).siblings('.quality').text();
-//   if (status === 'swill') {
-//     $(this).siblings('.quality').text('plausible');
-//   } else if (status === 'plausible') {
-//     $(this).siblings('.quality').text('genius');
-//   }
-//
-//   var id = $(this).closest('entry').attr('id');
-//   var updated = JSON.parse(localStorage.getItem(id));
-//   var currentStatus = $(this).siblings('.quality').text();
-//   updated.quality = currentStatus;
-//   // localStorage.setItem(id, JSON.stringify(currentStatus));
-//   returnToStorage(id, updated);
-// })
