@@ -100,7 +100,7 @@ article .entry{
 .delete{
   background: url('images/delete.svg');
   float: right;
-  margin-top: 35px;
+  margin-top: 21px;
 
 }
 
@@ -146,11 +146,11 @@ article .entry{
 
   .submit {
     padding: 27px 25px;
-    width: 76vw;
+    width: 76%;
   }
 
   .entry {
-    width: 76vw;
+    width: 76%;
   }
 }
 
@@ -162,7 +162,7 @@ article .entry{
 
   .submit {
     padding: 27px 25px;
-    width: 76vw;
+    width: 76%;
   }
 
   .entry {
@@ -185,7 +185,7 @@ article .entry{
 
   .submit {
     padding: 27px 25px;
-    width: 78vw;
+    width: 78%;
   }
 
   .entry {
@@ -193,8 +193,12 @@ article .entry{
     width: 72%;
   }
 
+  .delete {
+    margin-top: 35px;
+  }
+
   .submit {
     padding: 27px 25px;
-    width: 73vw;
+    width: 75%;
   }
 }
