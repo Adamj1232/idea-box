@@ -76,10 +76,10 @@ $('.idea-field').on('focusout', '.ideaEdit', function(){
 
 
 $('.idea-field').on('click', '.down', function (){
- var status = $(this).siblings('span').text();
+ var status = $(this).siblings('.quality').text();
  if (status === "genius") {
      status = "plausible";
-     $(this).siblings('span').text("plausible");
+     $(this).siblings('.quality').text("plausible");
      newStatus(this, status);
  }else if (status === "plausible") {
       status = "swill";
@@ -89,14 +89,14 @@ $('.idea-field').on('click', '.down', function (){
 })
 
 $('.idea-field').on('click', '.up', function (){
- var status = $(this).siblings('span').text();
+ var status = $(this).siblings('.quality').text();
  if (status === "swill") {
      status = "plausible";
-     $(this).siblings('span').text("plausible");
+     $(this).siblings('.quality').text("plausible");
      newStatus(this, status);
  }else if (status === "plausible") {
       status = "genius";
-        $(this).siblings('span').text("genius");
+        $(this).siblings('.quality').text("genius");
    }
    newStatus(this, status);
 })
@@ -113,6 +113,35 @@ function newStatus (voteInput, status) {
  localStorage.setItem(parentId, JSON.stringify(getCard));
 
 }
+
+// $('.idea-field').on('click', '.up', function (){
+//  var status = $(this).siblings('span').text();
+//  console.log(status)
+//  if (status === "swill") {
+//      status = "plausible";
+//      $(this).siblings('span').text("plausible");
+//      newStatus(this, status);
+//  }else if (status === "plausible") {
+//       status = "genius";
+//         $(this).siblings('span').text("genius");
+//    }
+//    newStatus(this, status);
+// })
+//
+// /******FUNCTIONS******/
+//
+// function newStatus (voteInput, status) {
+// var status = $(this).siblings('span').text();
+//  var parentId = $(voteInput).parent().attr('id');
+//  var getCard = JSON.parse(localStorage.getItem(parentId));
+//  // console.log(parentId);
+//  // console.log(getCard);
+//  getCard.quality = status;
+//  // console.log(getCard.quality)
+//  console.log(status)
+//  localStorage.setItem(parentId, JSON.stringify(getCard));
+//
+// }
 
 function disableSubmit() {
  $('#submit').prop('disabled', true);
