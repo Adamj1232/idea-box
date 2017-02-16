@@ -10,6 +10,7 @@ $(document).ready(function(){
 
 $('#submit').prop('disabled', true);
 
+
 $('.idea-field').on('focusout', '.title', function(){
   var editId = $(this).parent().attr('id');
   var editTitle = $(this).closest('.title').html();

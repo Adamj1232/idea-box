@@ -45,7 +45,7 @@ main {
   height: 35px;
   margin: 20px auto;
   padding: 5px 25px;
-  width:  70vw;
+  width:  73vw;
 }
 
 .submit:hover {
@@ -59,7 +59,6 @@ main {
 .idea-field{
   display: flex;
   flex-direction: column;
-  /*padding: 20px;*/
 }
 
 .entry {
@@ -67,29 +66,69 @@ main {
   font-size: 18px;
   margin: auto;
   text-align: left;
-  width: 232px;
+  width: 70vw;
 }
 
-.entry p{
+.entry p, .quality{
   color: #939598;
+}
+
+.quality {
+  margin-left: 25px;
+  padding-bottom: 15px;
 }
 
 .title {
   color: #6D6E71;
-
 }
 
+.up, .down, .delete {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 25px;
+}
 
+.up:hover {
+  background: transparent url('images/upvote-hover.svg');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  width: 25px;
+}
 
+.down:hover {
+  background: transparent url('images/downvote-hover.svg');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  width: 25px;
+}
+
+.delete:hover {
+  background: transparent url('images/delete-hover.svg');
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  width: 25px;
+}
 
 
 
 /*Media Queries*/
 @media screen and (min-width: 480px) {
 
-  header{
-
+  header {
     font-size: 35px;
+  }
+  .input {
+    padding: 15px;
+  }
+
+  .submit {
+    padding: 27px 25px;
+    width: 76vw;
+  }
+
+  .entry {
+    width: 76vw;
   }
 }
 
@@ -99,12 +138,41 @@ main {
     font-size: 40px;
   }
 
+  .submit {
+    padding: 27px 25px;
+    width: 76vw;
+  }
+
+  .entry {
+    font-size: 120%;
+    width: 74vw;
+  }
+
 }
 
 
 @media screen and (min-width: 720px) {
 
   header{
-    font-size: 50px;
+    font-size: 53px;
+  }
+
+  .input{
+    font-size: 120%;
+  }
+
+  .submit {
+    padding: 27px 25px;
+    width: 78vw;
+  }
+
+  .entry {
+    font-size: 150%;
+    width: 72%;
+  }
+
+  .submit {
+    padding: 27px 25px;
+    width: 73vw;
   }
 }
