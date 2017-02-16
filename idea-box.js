@@ -1,39 +1,14 @@
-
 var $ideaTitle = $('#title');
 var $ideaBody = $('#body');
-var $submit = $('.submit');
 
 
 $(document).ready(function(){
-  for (var i = 0; i < localStorage.length; i++) {
-    prepend(JSON.parse(localStorage.getItem(localStorage.key(i))))
-  }
+ for (var i = 0; i < localStorage.length; i++) {
+   prepend(JSON.parse(localStorage.getItem(localStorage.key(i))))
+ }
 });
 
 $('#submit').prop('disabled', true);
-
-function prepend(idea) {
-  $('.idea-field').prepend(`
-  <article class="entry" id="${idea.id}">
-    <h3 class="title" contenteditable="true"> ${idea.title} </h3>
-    <button class="delete"> Delete </button>
-    <p class="ideaEdit" contenteditable="true"> ${idea.body}</p>
-    <button class="up"></button>
-    <button class="down"></button>
-    <p class="quality">quality: ${idea.quality}</p>
-  </article>
-  `)
-}
-
-$('.submit').on('click', function(){
-  var storeBody = $('#body').val();
-  var storeTitle = $('#title').val();
-  var idea = new Idea (storeTitle, storeBody)
-    prepend(idea);
-    sendToStorage();
-    disableSubmit();
-    clearField();
-})
 
 $('.idea-field').on('focusout', '.title', function(){
   var editId = $(this).parent().attr('id');
@@ -51,20 +26,43 @@ $('.idea-field').on('focusout', '.ideaEdit', function(){
   localStorage.setItem(editId, JSON.stringify(updated))
 })
 
+function prepend(idea) {
+ $('.idea-field').prepend(`
+ <article class="entry" id="${idea.id}">
+   <h3 class="title" contenteditable="true"> ${idea.title} </h3>
+   <button class="delete"> Delete </button>
+   <p class="ideaEdit" contenteditable="true"> ${idea.body}</p>
+   <button class="up">Upvote</button>
+   <button class="down">Downvote</button>
+   <p>quality:</p>
+   <span class="quality">${idea.quality}</span>
+ </article>
+ `)
+}
+
+$('.submit').on('click', function(){
+ var storeBody = $('#body').val();
+ var storeTitle = $('#title').val();
+ var idea = new Idea (storeTitle, storeBody)
+   prepend(idea);
+   sendToStorage();
+   disableSubmit();
+   clearField();
+})
+
 $('.idea-field').on('click', '.delete', function(){
-  var rmvId = $(this).parent().attr('id');
-  $(this).parent('.entry').remove();
-  localStorage.removeItem(rmvId);
+ var rmvId = $(this).parent().attr('id');
+ $(this).parent('.entry').remove();
+ localStorage.removeItem(rmvId);
 })
 
 $('input[type=text]').on('keyup', function () {
-  if ($ideaTitle.val() !== "" && $ideaBody.val() !== ""){
-    $('#submit').prop('disabled', false);
-  } else {
-    $('#submit').prop('disabled', true);
-  }
+ if ($ideaTitle.val() !== "" && $ideaBody.val() !== ""){
+   $('#submit').prop('disabled', false);
+ } else {
+   $('#submit').prop('disabled', true);
+ }
 })
-
 
 $('#search').on('keyup', function() {
   var searchInput = $(this).val().toLowerCase();
@@ -77,31 +75,72 @@ $('#search').on('keyup', function() {
   })
 })
 
+$('.idea-field').on('click', '.up', function() {
+  var status = $(this).siblings('.quality').text();
+  if (status === 'swill') {
+    $(this).siblings('.quality').text('plausible');
+  } else if (status === 'plausible') {
+    $(this).siblings('.quality').text('genius');
+  }
+
+  var id = $(this).parent().attr('id');
+  var idea = JSON.parse(localStorage.getItem(id));
+  var currentStatus = $(this).siblings('.quality').text();
+  idea.quality = currentStatus;
+  sendToStorage(id, idea);
+})
+
+// $('.idea-field').on('click', '.up', function (){
+//  var status = $(this).siblings('.quality').text();
+//  if (status === "swill") {
+//      status = "plausible";
+//      $(this).siblings('.quality').text("plausible");
+//      newStatus(this, status);
+//  }else if (status === "plausible") {
+//       status = "genius";
+//         $(this).siblings('.quality').text("genius");
+//           newStatus(this, status);
+//    }
+//
+// })
+//
+//
+//
+// /******FUNCTIONS******/
+//
+// function updateStatus (voteInput, status) {
+//  var parentId = $(voteInput).parent().attr('id');
+//  var getCard = JSON.parse(localStorage.getItem(parentId));
+//  Idea.quality = status;
+//  localStorage.setItem(parentId, JSON.stringify(getCard));
+//
+// }
+
 function disableSubmit() {
-  $('#submit').prop('disabled', true);
+ $('#submit').prop('disabled', true);
 }
 
 function clearField() {
-    $ideaTitle.val("");
-    $ideaBody.val("");
+   $ideaTitle.val("");
+   $ideaBody.val("");
 }
 
 function Idea(title, body) {
-  this.title = title;
-  this.body = body;
-  this.quality = 'swill';
-  this.id = Date.now();
+ this.title = title;
+ this.body = body;
+ this.quality = 'swill';
+ this.id = Date.now();
 }
 
 function sendToStorage(idea) {
-  var storeBody = $('#body').val();
-  var storeTitle = $('#title').val();
-  var idea = new Idea (storeTitle, storeBody)
-  localStorage.setItem(idea.id, JSON.stringify(idea))
+ var storeBody = $('#body').val();
+ var storeTitle = $('#title').val();
+ var idea = new Idea (storeTitle, storeBody)
+ localStorage.setItem(idea.id, JSON.stringify(idea))
 }
 
 function retrieveIdea() {
-  var storeBody = $('#body').val();
-  var storeTitle = $('#title').val();
-  var idea = new Idea (storeTitle, storeBody)
+ var storeBody = $('#body').val();
+ var storeTitle = $('#title').val();
+ var idea = new Idea (storeTitle, storeBody)
 }
